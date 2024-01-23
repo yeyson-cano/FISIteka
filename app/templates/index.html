@@ -1,0 +1,13 @@
+<!-- FISIteka/app/templates/index.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Bienvenido a FISIteka</h1>
+    <h2>Recursos Disponibles:</h2>
+    <ul>
+        {% for resource in resources %}
+            <li><a href="{{ url_for('resource_detail', resource_id=resource.id) }}">{{ resource.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

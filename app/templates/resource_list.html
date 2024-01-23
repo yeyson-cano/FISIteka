@@ -1,0 +1,20 @@
+<!-- FISIteka/app/templates/resource_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Listado de Recursos</h1>
+    {% if current_user.is_authenticated %}
+        <p>Bienvenido, {{ current_user.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Iniciar sesión</a> o <a href="{{ url_for('register') }}">Registrarse</a></p>
+    {% endif %}
+    <ul>
+        {% for resource in resources %}
+            <li><a href="{{ url_for('resource_detail', resource_id=resource.id) }}">{{ resource.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% if current_user.is_authenticated %}
+        <p><a href="{{ url_for('new_resource') }}">Agregar Nuevo Recurso</a></p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- FISIteka/app/templates/register.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Registro</h1>
+    <form method="POST" action="{{ url_for('register') }}">
+        {{ form.hidden_tag() }}
+        <p>{{ form.username.label }} {{ form.username }}</p>
+        <p>{{ form.email.label }} {{ form.email }}</p>
+        <p>{{ form.password.label }} {{ form.password }}</p>
+        <p>{{ form.confirm_password.label }} {{ form.confirm_password }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a>.</p>
+{% endblock %}
