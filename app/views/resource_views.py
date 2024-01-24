@@ -13,8 +13,10 @@ def index():
     return render_template('index.html', resources=resources, current_user=current_user)
 
 @app.route("/resource/<int:resource_id>")
-@login_required
 def resource_detail(resource_id):
+    if not current_user.is_authenticated:
+        flash('Debes iniciar sesión para acceder a esta página.', 'danger')
+        return redirect(url_for('login'))
     resource = Resource.query.get_or_404(resource_id)
     return render_template('resource_detail.html', resource=resource)
 
